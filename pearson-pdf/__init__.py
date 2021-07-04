@@ -27,7 +27,7 @@ def download_pages():
     return pages
 
 
-def combine_pages(pages: list, path: str):
+def combine_pages(pages: list, path: str, format: str = "PDF", resolution: int = 100):
     page_0 = pages[0]
     pages.pop(0)
-    page_0.save(path, "PDF", resolution=100.0, save_all=True, append_images=pages)
+    page_0.save(path, format, resolution=resolution, save_all=True, append_images=pages)
