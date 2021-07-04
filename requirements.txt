@@ -1,2 +1,4 @@
 pillow
+pytest
+python-dotenv
 requests
