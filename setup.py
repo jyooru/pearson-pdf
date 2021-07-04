@@ -28,7 +28,7 @@ setuptools.setup(
     ],
     keywords="pearson, ebook, pearson-ebook, pdf, pearson-pdf",
     package_dir={"": "pearson_pdf"},
-    packages=setuptools.find_packages(where="pearson_pdf"),
+    packages=setuptools.find_packages(exclude=["tests"]),
     install_requires=["requests", "pillow"],
     python_requires=">=3.9",  # TODO: support more versions
     entry_points={"console_scripts": ["pearson_pdf=pearson_pdf:__main__"]},
