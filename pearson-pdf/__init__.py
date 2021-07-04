@@ -3,9 +3,6 @@ from io import BytesIO
 from PIL import Image
 
 
-textbook_id = ""
-
-
 def textbook_url(id: str):
     return (
         "https://d2f01w1orx96i0.cloudfront.net/resources/products/epubs/generated/"
@@ -14,7 +11,7 @@ def textbook_url(id: str):
     )
 
 
-def download_pages():
+def download_pages(textbook_id: str):
     pages = []
     while True:
         response = requests.get(textbook_url(textbook_id) + str(len(pages)))
