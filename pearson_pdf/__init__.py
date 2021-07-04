@@ -1,6 +1,19 @@
 import requests
 from io import BytesIO
 from PIL import Image
+import string
+
+
+def book_id(book_url: str):
+    book_id = book_url
+    if "generated" in book_url:
+        book_id = book_id.split("generated")[1]
+    if "foxit-assets" in book_url:
+        book_id = book_id.split("foxit-assets")[0]
+    allowed_characters = string.ascii_letters + string.digits + "-"
+    return "".join(
+        [character for character in book_id if character in allowed_characters]
+    )
 
 
 def book_url(book_id: str):
