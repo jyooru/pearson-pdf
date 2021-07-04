@@ -15,16 +15,18 @@ def textbook_url(id: str):
 
 
 def download_pages():
-    page = 0
     pages = []
     while True:
-        print("downloading page " + str(page))
-        response = requests.get(textbook_url(textbook_id) + str(page))
+        print("downloading page " + str(len(pages)))
+        response = requests.get(textbook_url(textbook_id) + str(len(pages)))
         if response.status_code == 200:
             pages.append(Image.open(BytesIO(response.content)))
-            page += 1
         elif response.status_code == 403:
-            print("got 403 for page " + str(page) + ", not downloading anymore pages")
+            print(
+                "got 403 for page "
+                + str(len(pages))
+                + ", not downloading anymore pages"
+            )
             break
         else:
             raise Exception('unexpected status code "' + response.status_code + '"')
