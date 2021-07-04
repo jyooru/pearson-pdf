@@ -59,7 +59,7 @@ jobs:
       - name: Test with pytest
         run: |
           pytest
-  build:
+  package:
     needs: [lint, test]
     runs-on: ubuntu-latest
     if: github.event_name == 'release'
