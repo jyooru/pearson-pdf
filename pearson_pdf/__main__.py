@@ -2,7 +2,7 @@ from . import book_id, combine_pages, download_pages
 import argparse
 
 
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser(
         prog="pearson_pdf", description="Download Pearson books as PDFs."
     )
@@ -16,3 +16,7 @@ if __name__ == "__main__":
     if args.url:
         args.book_id = book_id(args.book_id)
     combine_pages(download_pages(args.book_id), args.save_path)
+
+
+if __name__ == "__main__":
+    main()
