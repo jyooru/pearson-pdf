@@ -3,19 +3,19 @@ from io import BytesIO
 from PIL import Image
 
 
-def textbook_url(id: str):
+def book_url(book_id: str):
     return (
         "https://d2f01w1orx96i0.cloudfront.net/resources/products/epubs/generated/"
-        + id
+        + book_id
         + "/foxit-assets/pages/page"
     )
 
 
-def download_pages(textbook_id: str):
+def download_pages(book_id: str):
     pages = []
-    url = textbook_url(textbook_id)
+    pages_url = book_url(book_id)
     while True:
-        response = requests.get(url + str(len(pages)))
+        response = requests.get(pages_url + str(len(pages)))
         if response.status_code == 200:
             pages.append(Image.open(BytesIO(response.content)))
         elif response.status_code == 403:
