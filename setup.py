@@ -7,7 +7,7 @@ with open("README.md", "r", encoding="utf-8") as readme:
 
 setuptools.setup(
     name="pearson-pdf",
-    version="1.0.3",
+    version="1.0.4",
     author="jyooru",
     license="MIT",
     description="Tool to download Pearson books as PDFs.",
