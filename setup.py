@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as readme:
     long_description = readme.read()
 
 setuptools.setup(
-    name="pearson_pdf",
+    name="pearson-pdf",
     version="1.0.0",
     author="jyooru",
     license="MIT",

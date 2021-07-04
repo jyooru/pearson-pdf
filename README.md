@@ -4,10 +4,10 @@ Tool to download Pearson books as PDFs.
 
 ## Installation
 
-Install `pearson_pdf` using pip.
+Install `pearson-pdf` using pip.
 
 ```bash
-pip install pearson_pdf
+pip install pearson-pdf
 ```
 
 ## Usage
