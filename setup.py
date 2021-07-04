@@ -27,7 +27,6 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     keywords="pearson, ebook, pearson-ebook, pdf, pearson-pdf",
-    package_dir={"": "pearson_pdf"},
     packages=setuptools.find_packages(exclude=["tests"]),
     install_requires=["requests", "pillow"],
     python_requires=">=3.9",  # TODO: support more versions
