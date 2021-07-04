@@ -13,8 +13,9 @@ def textbook_url(id: str):
 
 def download_pages(textbook_id: str):
     pages = []
+    url = textbook_url(textbook_id)
     while True:
-        response = requests.get(textbook_url(textbook_id) + str(len(pages)))
+        response = requests.get(url + str(len(pages)))
         if response.status_code == 200:
             pages.append(Image.open(BytesIO(response.content)))
         elif response.status_code == 403:
