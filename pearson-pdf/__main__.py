@@ -8,13 +8,11 @@ textbook_id = ""
 output_path = "output.pdf"
 
 
-def textbook_url(id: str, page: str):
+def textbook_url(id: str):
     return (
         "https://d2f01w1orx96i0.cloudfront.net/resources/products/epubs/generated/"
-        + textbook_id
+        + id
         + "/foxit-assets/pages/page"
-        + page
-        + "?password=&accessToken=null&formMode=true"
     )
 
 
@@ -23,7 +21,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
     pages = []
     while True:
         print("downloading page " + str(page))
-        response = requests.get(textbook_url(textbook_id, str(page)))
+        response = requests.get(textbook_url(textbook_id) + str(page))
         if response.status_code == 200:
             pages.append(Image.open(io.BytesIO(response.content)))
             page += 1
