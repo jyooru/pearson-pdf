@@ -31,5 +31,5 @@ setuptools.setup(
     packages=setuptools.find_packages(where="pearson_pdf"),
     install_requires=["requests", "pillow"],
     python_requires=">=3.9",  # TODO: support more versions
-    entry_points={"console_scripts": ["pearson_pdf=pearson_pdf"]},
+    entry_points={"console_scripts": ["pearson_pdf=pearson_pdf:__main__"]},
 )
