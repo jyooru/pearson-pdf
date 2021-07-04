@@ -1,5 +1,4 @@
 import requests
-from tempfile import TemporaryDirectory
 from io import BytesIO
 from PIL import Image
 
@@ -16,22 +15,19 @@ def textbook_url(id: str):
 
 
 def download_pages():
-    with TemporaryDirectory() as tmpdir:
-        page = 0
-        pages = []
-        while True:
-            print("downloading page " + str(page))
-            response = requests.get(textbook_url(textbook_id) + str(page))
-            if response.status_code == 200:
-                pages.append(Image.open(BytesIO(response.content)))
-                page += 1
-            elif response.status_code == 403:
-                print(
-                    "got 403 for page " + str(page) + ", not downloading anymore pages"
-                )
-                break
-            else:
-                raise Exception('unexpected status code "' + response.status_code + '"')
+    page = 0
+    pages = []
+    while True:
+        print("downloading page " + str(page))
+        response = requests.get(textbook_url(textbook_id) + str(page))
+        if response.status_code == 200:
+            pages.append(Image.open(BytesIO(response.content)))
+            page += 1
+        elif response.status_code == 403:
+            print("got 403 for page " + str(page) + ", not downloading anymore pages")
+            break
+        else:
+            raise Exception('unexpected status code "' + response.status_code + '"')
     return pages
 
 
