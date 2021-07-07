@@ -34,7 +34,9 @@ def download_pages(book_id: str, max_pages: int = None):
         elif response.status_code == 403:
             break
         else:
-            raise Exception('unexpected status code "' + response.status_code + '"')
+            raise Exception(
+                'unexpected status code "' + str(response.status_code) + '"'
+            )
         if (max_pages is not None) and (len(pages) == max_pages):
             break
     return pages
