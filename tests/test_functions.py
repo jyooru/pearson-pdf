@@ -37,8 +37,9 @@ def test_combine_pages():
 
 @pytest.mark.skipif(os.getenv("book_id") is None, reason="book_id is not set")
 def test_download_pages():
-    pages = download_pages(os.getenv("book_id"))
-    assert len(pages) != 0
+    max_pages = 10
+    pages = download_pages(os.getenv("book_id"), max_pages)
+    assert len(pages) == max_pages
     for page in pages:
         assert page.height != 0
         assert page.width != 0

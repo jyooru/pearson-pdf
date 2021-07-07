@@ -24,7 +24,7 @@ def get_book_url(book_id: str):
     )
 
 
-def download_pages(book_id: str):
+def download_pages(book_id: str, max_pages: int = None):
     pages = []
     pages_url = get_book_url(book_id)
     while True:
@@ -35,6 +35,8 @@ def download_pages(book_id: str):
             break
         else:
             raise Exception('unexpected status code "' + response.status_code + '"')
+        if (max_pages is not None) and (len(pages) == max_pages):
+            break
     return pages
 
 
