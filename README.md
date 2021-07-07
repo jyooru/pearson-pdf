@@ -29,7 +29,7 @@ Now you can download your PDF:
 pearson_pdf xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx output.pdf
 
 # with a url
-pearson_pdf -u https://example.com/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx output.pdf
+pearson_pdf https://example.com/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx output.pdf
 ```
 
 More information on usage is in the help page:
