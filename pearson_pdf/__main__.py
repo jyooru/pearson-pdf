@@ -1,4 +1,4 @@
-from . import book_id, combine_pages, download_pages
+from . import get_book_id, combine_pages, download_pages
 import argparse
 
 
@@ -14,7 +14,7 @@ def main():
     args = parser.parse_args()
 
     if args.url:
-        args.book_id = book_id(args.book_id)
+        args.book_id = get_book_id(args.book_id)
     combine_pages(download_pages(args.book_id), args.save_path)
 
 
