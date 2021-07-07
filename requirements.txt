@@ -1,3 +1,4 @@
+faker
 pillow
 pytest
 python-dotenv

@@ -1,4 +1,4 @@
-from pearson_pdf import combine_pages, download_pages
+from pearson_pdf import get_book_id, get_book_url, combine_pages, download_pages
 import requests
 from io import BytesIO
 from PIL import Image
@@ -6,9 +6,20 @@ from tempfile import TemporaryDirectory
 import os
 from dotenv import load_dotenv
 import pytest
+from faker import Faker
 
 
 load_dotenv()
+
+
+@pytest.fixture
+def faker():
+    return Faker()
+
+
+def test_get_book(faker):
+    book_id = faker.uuid4()
+    assert get_book_id(get_book_url(book_id)) == book_id
 
 
 def test_combine_pages():
