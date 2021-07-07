@@ -1,4 +1,4 @@
-from . import book_id, combine_pages, download_pages
+from . import get_book_id, combine_pages, download_pages
 import argparse
 
 
@@ -10,7 +10,7 @@ def main():
     parser.add_argument("save_path", type=str, help="Path to save PDF")
     args = parser.parse_args()
 
-    args.book = book_id(args.book)
+    args.book = get_book_id(args.book)
     combine_pages(download_pages(args.book), args.save_path)
 
 

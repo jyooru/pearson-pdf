@@ -4,7 +4,7 @@ from PIL import Image
 import string
 
 
-def book_id(book_url: str):
+def get_book_id(book_url: str):
     book_id = book_url
     if "generated" in book_url:
         book_id = book_id.split("generated")[1]
@@ -16,7 +16,7 @@ def book_id(book_url: str):
     )
 
 
-def book_url(book_id: str):
+def get_book_url(book_id: str):
     return (
         "https://d2f01w1orx96i0.cloudfront.net/resources/products/epubs/generated/"
         + book_id
@@ -24,9 +24,9 @@ def book_url(book_id: str):
     )
 
 
-def download_pages(book_id: str):
+def download_pages(book_id: str, max_pages: int = None):
     pages = []
-    pages_url = book_url(book_id)
+    pages_url = get_book_url(book_id)
     while True:
         response = requests.get(pages_url + str(len(pages)))
         if response.status_code == 200:
@@ -34,7 +34,11 @@ def download_pages(book_id: str):
         elif response.status_code == 403:
             break
         else:
-            raise Exception('unexpected status code "' + response.status_code + '"')
+            raise Exception(
+                'unexpected status code "' + str(response.status_code) + '"'
+            )
+        if (max_pages is not None) and (len(pages) == max_pages):
+            break
     return pages
 
 
