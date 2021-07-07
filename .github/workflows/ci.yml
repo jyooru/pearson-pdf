@@ -63,7 +63,7 @@ jobs:
           pip install pytest
           pip install -r requirements.txt
       - name: Test with pytest
-        if: matrix.os != 'Windows'
+        if: runner.os != 'Windows'
         run: |
           if [ -z "$BOOK_ID" ]; then
             pytest
@@ -71,7 +71,7 @@ jobs:
             book_id="$BOOK_ID" pytest
           fi
       - name: Test with pytest (Windows)
-        if: matrix.os == 'Windows'
+        if: runner.os == 'Windows'
         run: |
           if ("$Env:BOOK_ID") {
             $Env:book_id="$Env:BOOK_ID"
