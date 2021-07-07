@@ -40,8 +40,6 @@ jobs:
       matrix:
         os: [macos-latest, ubuntu-latest, windows-latest]
         python-version: ["3.9", "3.8", "3.7", "3.6"]
-    env:
-      BOOK_ID: ${{ secrets.BOOK_ID }}
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
@@ -63,6 +61,8 @@ jobs:
           pip install pytest
           pip install -r requirements.txt
       - name: Test with pytest
+        env:
+          book_id: ${{ secrets.BOOK_ID }}
         run: |
           pytest
   package:
