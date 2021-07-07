@@ -64,7 +64,11 @@ jobs:
           pip install -r requirements.txt
       - name: Test with pytest
         run: |
-          pytest
+          if [ -z "$BOOK_ID" ]; then
+            pytest
+          else
+            book_id="$BOOK_ID" pytest
+          fi
   package:
     needs: [lint, test]
     runs-on: ubuntu-latest
