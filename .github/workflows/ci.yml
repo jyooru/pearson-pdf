@@ -40,6 +40,8 @@ jobs:
       matrix:
         os: [macos-latest, ubuntu-latest, windows-latest]
         python-version: ["3.9", "3.8", "3.7", "3.6"]
+    env:
+      BOOK_ID: ${{ secrets.BOOK_ID }}
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
