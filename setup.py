@@ -7,7 +7,7 @@ with open("README.md", "r", encoding="utf-8") as readme:
 
 setuptools.setup(
     name="pearson-pdf",
-    version="1.0.4",
+    version="1.0.5",
     author="jyooru",
     license="MIT",
     description="Tool to download Pearson books as PDFs.",
@@ -29,6 +29,6 @@ setuptools.setup(
     keywords="pearson, ebook, pearson-ebook, pdf, pearson-pdf",
     packages=setuptools.find_packages(exclude=["tests"]),
     install_requires=["requests", "pillow"],
-    python_requires=">=3.9",  # TODO: support more versions
+    python_requires=">=3.6",
     entry_points={"console_scripts": ["pearson_pdf=pearson_pdf.__main__:main"]},
 )
