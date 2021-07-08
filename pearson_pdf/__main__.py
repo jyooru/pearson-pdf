@@ -13,10 +13,10 @@ def main():
     group.add_argument("save_path", type=str, help="Path to save PDF", nargs="?")
     args = parser.parse_args()
     if args.url:
-        print(get_book_url(get_book_id(args.book)))
+        print(get_book_url(args.book))
         exit()
     elif args.id:
-        print(get_book_id(get_book_url(args.book)))
+        print(get_book_id(args.book))
         exit()
     else:
         if args.save_path is None:
