@@ -12,11 +12,11 @@ def main():
     group.add_argument("-i", "--id", action="store_true", help="Print Book ID")
     group.add_argument("save_path", type=str, help="Path to save PDF", nargs="?")
     args = parser.parse_args()
-    if args.url:
-        print(get_book_url(args.book))
-        exit()
-    elif args.id:
-        print(get_book_id(args.book))
+    if args.url or args.id:
+        if args.url:
+            print(get_book_url(args.book))
+        elif args.id:
+            print(get_book_id(args.book))
         exit()
     else:
         if args.save_path is None:
