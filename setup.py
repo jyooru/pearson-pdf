@@ -1,13 +1,14 @@
-import setuptools
+from setuptools import setup, find_packages
+from pearson_pdf import __version__
 
 
 with open("README.md", "r", encoding="utf-8") as readme:
     long_description = readme.read()
 
 
-setuptools.setup(
+setup(
     name="pearson-pdf",
-    version="1.0.5",
+    version=__version__,
     author="jyooru",
     license="MIT",
     description="Tool to download Pearson books as PDFs.",
@@ -27,7 +28,7 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     keywords="pearson, ebook, pearson-ebook, pdf, pearson-pdf",
-    packages=setuptools.find_packages(exclude=["tests"]),
+    packages=find_packages(exclude=["tests"]),
     install_requires=["requests", "pillow"],
     python_requires=">=3.6",
     entry_points={"console_scripts": ["pearson_pdf=pearson_pdf.__main__:main"]},
