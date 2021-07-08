@@ -26,10 +26,10 @@ Now you can download your PDF:
 
 ```bash
 # with an id
-pearson_pdf xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx output.pdf
+pearson_pdf xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 
 # with a url
-pearson_pdf https://example.com/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx output.pdf
+pearson_pdf https://example.com/generated/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/foxit-assets
 ```
 
 More information on usage is in the help page:
