@@ -4,6 +4,9 @@ from PIL import Image
 import string
 
 
+__version__ = "1.0.5"
+
+
 def get_book_id(book_url: str):
     book_id = book_url
     if "generated" in book_url:
