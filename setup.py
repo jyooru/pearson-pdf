@@ -1,4 +1,5 @@
 import setuptools
+from pearson_pdf import __version__
 
 
 with open("README.md", "r", encoding="utf-8") as readme:
@@ -7,7 +8,7 @@ with open("README.md", "r", encoding="utf-8") as readme:
 
 setuptools.setup(
     name="pearson-pdf",
-    version="1.0.5",
+    version=__version__,
     author="jyooru",
     license="MIT",
     description="Tool to download Pearson books as PDFs.",
