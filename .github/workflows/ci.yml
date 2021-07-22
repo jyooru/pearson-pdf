@@ -7,10 +7,13 @@ on:
     branches: [main]
   release:
     types: [published]
+  schedule:
+    - cron: 0 0 * * 0
 
 jobs:
   lint:
     runs-on: ubuntu-latest
+    if: github.event_name != 'schedule'
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python 3
