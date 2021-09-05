@@ -1,8 +1,9 @@
+from typing import Union
 from . import get_book_id, get_book_url, combine_pages, download_pages, __version__
 import argparse
 
 
-def main():
+def parse_args(args: list = None):
     parser = argparse.ArgumentParser(
         prog="pearson_pdf", description="Download Pearson books as PDFs."
     )
@@ -12,18 +13,29 @@ def main():
     group.add_argument("-u", "--url", action="store_true", help="Print Book URL")
     group.add_argument("-i", "--id", action="store_true", help="Print Book ID")
     group.add_argument("save_path", type=str, help="Path to save PDF", nargs="?")
-    args = parser.parse_args()
+    if args is None:
+        return parser.parse_args()
+    else:
+        return parser.parse_args(args)
+
+
+def run(args: argparse.Namespace) -> Union[str, None]:
     if args.url or args.id:
         if args.url:
-            print(get_book_url(args.book))
+            return get_book_url(args.book)
         elif args.id:
-            print(get_book_id(args.book))
-        exit()
+            return get_book_id(args.book)
     else:
         if args.save_path is None:
             args.save_path = get_book_id(get_book_url(args.book)) + ".pdf"
         args.book = get_book_id(args.book)
         combine_pages(download_pages(args.book), args.save_path)
+
+
+def main():
+    result = run(parse_args())
+    if result is not None:
+        print(result)
 
 
 if __name__ == "__main__":
