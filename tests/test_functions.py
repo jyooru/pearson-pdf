@@ -1,4 +1,10 @@
-from pearson_pdf import get_book_id, get_book_url, combine_pages, download_pages
+from pearson_pdf import (
+    get_book_id,
+    get_book_url,
+    combine_pages,
+    download_pages,
+    PageDownloadError,
+)
 import requests
 from io import BytesIO
 from PIL import Image
@@ -43,3 +49,6 @@ def test_download_pages():
     for page in pages:
         assert page.height != 0
         assert page.width != 0
+
+    with pytest.raises(PageDownloadError):
+        download_pages("qwerty")
