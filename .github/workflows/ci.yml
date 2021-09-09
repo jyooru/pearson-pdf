@@ -64,13 +64,27 @@ jobs:
           pip install pytest
           pip install pytest-cov
           pip install -r requirements.txt
-      - name: Test and generate coverage report
+      - name: Test with pytest
+        if: runner.os != 'Windows'
         env:
           book_id: ${{ secrets.BOOK_ID }}
         run: |
-          pip install pytest
-          pip install pytest-cov
-          pytest --cov=./ --cov-report=xml
+          if [ -z "$BOOK_ID" ]; then
+            pytest --cov=./ --cov-report=xml
+          else
+            book_id="$BOOK_ID" pytest --cov=./ --cov-report=xml
+          fi
+      - name: Test with pytest (Windows)
+        if: runner.os == 'Windows'
+        env:
+          book_id: ${{ secrets.BOOK_ID }}
+        run: |
+          if ("$Env:BOOK_ID") {
+            $Env:book_id="$Env:BOOK_ID"
+            pytest --cov=./ --cov-report=xml
+          } else {
+            pytest --cov=./ --cov-report=xml
+          }
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
         if: ${{ always() }}
