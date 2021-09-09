@@ -4,6 +4,9 @@ from PIL import Image
 import string
 
 
+__version__ = "1.1.1"
+
+
 def get_book_id(book_url: str):
     book_id = book_url
     if "generated" in book_url:
@@ -24,6 +27,10 @@ def get_book_url(book_id: str):
     )
 
 
+class PageDownloadError(Exception):
+    pass
+
+
 def download_pages(book_id: str, max_pages: int = None):
     pages = []
     pages_url = get_book_url(book_id)
@@ -39,6 +46,8 @@ def download_pages(book_id: str, max_pages: int = None):
             )
         if (max_pages is not None) and (len(pages) == max_pages):
             break
+    if len(pages) == 0:
+        raise PageDownloadError("No pages could be downloaded for {}.".format(book_id))
     return pages
 
 
