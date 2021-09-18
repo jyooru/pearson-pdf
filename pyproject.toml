@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pearson-pdf"
-version = "1.1.1"
+version = "1.2.0"
 description = "Tool to download Pearson books as PDFs."
 authors = ["Joel <joel@joel.tokyo>"]
 license = "MIT"
