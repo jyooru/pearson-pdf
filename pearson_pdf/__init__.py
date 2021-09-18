@@ -33,7 +33,7 @@ class PageDownloadError(Exception):
 
 
 def download_pages(book_id: str, max_pages: int = None) -> "list[Image]":
-    pages = []
+    pages: list[Image] = []
     pages_url = get_book_url(book_id)
     while True:
         response = requests.get(pages_url + str(len(pages)))
