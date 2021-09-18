@@ -8,7 +8,7 @@ from PIL import Image
 __version__ = "1.2.0"
 
 
-def get_book_id(book_url: str):
+def get_book_id(book_url: str) -> str:
     book_id = book_url
     if "generated" in book_url:
         book_id = book_id.split("generated")[1]
@@ -20,7 +20,7 @@ def get_book_id(book_url: str):
     )
 
 
-def get_book_url(book_id: str):
+def get_book_url(book_id: str) -> str:
     return (
         "https://d2f01w1orx96i0.cloudfront.net/resources/products/epubs/generated/"
         + book_id
@@ -32,7 +32,7 @@ class PageDownloadError(Exception):
     pass
 
 
-def download_pages(book_id: str, max_pages: int = None):
+def download_pages(book_id: str, max_pages: int = None) -> "list[Image]":
     pages = []
     pages_url = get_book_url(book_id)
     while True:
@@ -52,7 +52,9 @@ def download_pages(book_id: str, max_pages: int = None):
     return pages
 
 
-def combine_pages(pages: list, path: str, format: str = "PDF", resolution: int = 100):
+def combine_pages(
+    pages: list, path: str, format: str = "PDF", resolution: int = 100
+) -> None:
     page_0 = pages[0]
     pages.pop(0)
     page_0.save(path, format, resolution=resolution, save_all=True, append_images=pages)

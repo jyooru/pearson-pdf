@@ -3,7 +3,7 @@ import argparse
 from . import __version__, combine_pages, download_pages, get_book_id, get_book_url
 
 
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser(
         prog="pearson_pdf", description="Download Pearson books as PDFs."
     )
