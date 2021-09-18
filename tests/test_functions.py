@@ -1,18 +1,20 @@
+import os
+from io import BytesIO
+from tempfile import TemporaryDirectory
+
+import pytest
+import requests
+from dotenv import load_dotenv
+from faker import Faker
+from PIL import Image
+
 from pearson_pdf import (
-    get_book_id,
-    get_book_url,
+    PageDownloadError,
     combine_pages,
     download_pages,
-    PageDownloadError,
+    get_book_id,
+    get_book_url,
 )
-import requests
-from io import BytesIO
-from PIL import Image
-from tempfile import TemporaryDirectory
-import os
-from dotenv import load_dotenv
-import pytest
-from faker import Faker
 
 
 load_dotenv()

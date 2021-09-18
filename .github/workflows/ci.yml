@@ -34,6 +34,8 @@ jobs:
         run: poetry install --no-interaction --no-root
       - name: Lint with flake8
         run: poetry run flake8 . --count --max-complexity=10 --max-line-length=88 --show-source --statistics
+      - name: Lint with isort
+        run: poetry run isort . --check --diff
   test:
     strategy:
       matrix:

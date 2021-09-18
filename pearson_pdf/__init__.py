@@ -1,7 +1,8 @@
-import requests
-from io import BytesIO
-from PIL import Image
 import string
+from io import BytesIO
+
+import requests
+from PIL import Image
 
 
 __version__ = "1.2.0"
