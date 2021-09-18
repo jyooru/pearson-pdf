@@ -53,7 +53,7 @@ def download_pages(book_id: str, max_pages: int = None) -> "list[Image]":
 
 
 def combine_pages(
-    pages: list, path: str, format: str = "PDF", resolution: int = 100
+    pages: "list[Image]", path: str, format: str = "PDF", resolution: int = 100
 ) -> None:
     page_0 = pages[0]
     pages.pop(0)
