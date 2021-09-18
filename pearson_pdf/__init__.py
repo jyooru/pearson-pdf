@@ -32,7 +32,7 @@ class PageDownloadError(Exception):
     pass
 
 
-def download_pages(book_id: str, max_pages: int = None) -> "list[Image]":
+def download_pages(book_id: str, max_pages: int = -1) -> "list[Image]":
     pages: list[Image] = []
     pages_url = get_book_url(book_id)
     while True:
@@ -45,7 +45,7 @@ def download_pages(book_id: str, max_pages: int = None) -> "list[Image]":
             raise Exception(
                 'unexpected status code "' + str(response.status_code) + '"'
             )
-        if (max_pages is not None) and (len(pages) == max_pages):
+        if (not max_pages <= -1) and (len(pages) == max_pages):
             break
     if len(pages) == 0:
         raise PageDownloadError("No pages could be downloaded for {}.".format(book_id))
