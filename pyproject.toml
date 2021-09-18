@@ -30,6 +30,7 @@ flake8 = "^3.9.2"
 black = "^21.9b0"
 pytest-cov = "^2.12.1"
 Faker = "^8.13.2"
+isort = "^5.9.3"
 
 [tool.poetry.scripts]
 pearson_pdf = "pearson_pdf.__main__:main"
