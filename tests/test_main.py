@@ -1,3 +1,4 @@
+import os
 from itertools import combinations
 
 import pytest
@@ -40,11 +41,10 @@ def test_run() -> None:
         run(parse_args(["qwerty"]))
 
 
+@pytest.mark.skipif("book_id" not in os.environ, reason="book_id is not set")
 def test_main() -> None:
     with pytest.raises(SystemExit):
         main()
 
-    main(["qwerty", "-u"])
-
-    with pytest.raises(PageDownloadError):
-        main(["qwerty"])
+    main([os.environ["book_id"], "-u"])
+    main([os.environ["book_id"]])
