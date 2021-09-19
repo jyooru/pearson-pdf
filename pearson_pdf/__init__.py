@@ -32,19 +32,15 @@ class PageDownloadError(Exception):
     pass
 
 
-def download_pages(book_id: str, max_pages: int = -1) -> "list[Image]":
-    pages: list[Image] = []
+def download_pages(book_id: str, max_pages: int = -1) -> "list[Image.Image]":
+    pages: list[Image.Image] = []
     pages_url = get_book_url(book_id)
     while True:
         response = requests.get(pages_url + str(len(pages)))
         if response.status_code == 200:
             pages.append(Image.open(BytesIO(response.content)))
-        elif response.status_code == 403:
-            break
         else:
-            raise Exception(
-                'unexpected status code "' + str(response.status_code) + '"'
-            )
+            break
         if (not max_pages <= -1) and (len(pages) == max_pages):
             break
     if len(pages) == 0:
@@ -53,7 +49,7 @@ def download_pages(book_id: str, max_pages: int = -1) -> "list[Image]":
 
 
 def combine_pages(
-    pages: "list[Image]", path: str, format: str = "PDF", resolution: int = 100
+    pages: "list[Image.Image]", path: str, format: str = "PDF", resolution: int = 100
 ) -> None:
     page_0 = pages[0]
     pages.pop(0)
