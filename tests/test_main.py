@@ -4,7 +4,7 @@ import pytest
 from dotenv import load_dotenv
 
 from pearson_pdf import PageDownloadError
-from pearson_pdf.__main__ import parse_args, run
+from pearson_pdf.__main__ import main, parse_args, run
 
 
 load_dotenv()
@@ -38,3 +38,10 @@ def test_run() -> None:
         run(parse_args(["qwerty", "qwerty.pdf"]))
     with pytest.raises(PageDownloadError):
         run(parse_args(["qwerty"]))
+
+
+def test_main() -> None:
+    main(["qwerty", "-u"])
+
+    with pytest.raises(PageDownloadError):
+        main(["qwerty"])

@@ -31,11 +31,11 @@ def run(args: argparse.Namespace) -> Union[str, None]:
             args.save_path = get_book_id(get_book_url(args.book)) + ".pdf"
         args.book = get_book_id(args.book)
         combine_pages(download_pages(args.book), args.save_path)
-    return None
+        return None
 
 
-def main() -> None:
-    result = run(parse_args())
+def main(args: "list[str]" = []) -> None:
+    result = run(parse_args(args))
     if result is not None:
         print(result)
 
