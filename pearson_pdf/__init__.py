@@ -32,8 +32,8 @@ class PageDownloadError(Exception):
     pass
 
 
-def download_pages(book_id: str, max_pages: int = -1) -> "list[Image]":
-    pages: list[Image] = []
+def download_pages(book_id: str, max_pages: int = -1) -> "list[Image.Image]":
+    pages: list[Image.Image] = []
     pages_url = get_book_url(book_id)
     while True:
         response = requests.get(pages_url + str(len(pages)))
@@ -53,7 +53,7 @@ def download_pages(book_id: str, max_pages: int = -1) -> "list[Image]":
 
 
 def combine_pages(
-    pages: "list[Image]", path: str, format: str = "PDF", resolution: int = 100
+    pages: "list[Image.Image]", path: str, format: str = "PDF", resolution: int = 100
 ) -> None:
     page_0 = pages[0]
     pages.pop(0)
