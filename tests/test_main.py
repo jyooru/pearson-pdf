@@ -1,4 +1,3 @@
-import itertools
 import pytest
 from dotenv import load_dotenv
 from faker import Faker
