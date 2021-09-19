@@ -1,7 +1,9 @@
+from itertools import combinations
+
 import pytest
 from dotenv import load_dotenv
 from faker import Faker
-from itertools import combinations
+
 from pearson_pdf.__main__ import parse_args, run
 
 
