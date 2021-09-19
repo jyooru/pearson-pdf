@@ -1,6 +1,7 @@
-from typing import Union
-from . import get_book_id, get_book_url, combine_pages, download_pages, __version__
 import argparse
+from typing import Union
+
+from . import __version__, combine_pages, download_pages, get_book_id, get_book_url
 
 
 def parse_args(args: list = None):

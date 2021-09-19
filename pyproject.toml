@@ -1,0 +1,48 @@
+[tool.poetry]
+name = "pearson-pdf"
+version = "1.2.0"
+description = "Tool to download Pearson books as PDFs."
+authors = ["Joel <joel@joel.tokyo>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/jyooru/pearson-pdf"
+repository = "https://github.com/jyooru/pearson-pdf"
+keywords = ["pearson", "ebook", "pdf"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+exclude = ["tests"]
+
+[tool.poetry.dependencies]
+python = "^3.6.2"
+requests = "^2.26.0"
+Pillow = "^8.3.2"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.5"
+python-dotenv = "^0.19.0"
+flake8 = "^3.9.2"
+black = "^21.9b0"
+pytest-cov = "^2.12.1"
+Faker = "^8.13.2"
+isort = "^5.9.3"
+mypy = "^0.910"
+
+[tool.poetry.scripts]
+pearson_pdf = "pearson_pdf.__main__:main"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.isort]
+profile = "black"
+lines_after_imports = 2
+
+[tool.mypy]
+ignore_missing_imports = true

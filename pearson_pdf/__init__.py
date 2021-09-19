@@ -1,13 +1,14 @@
-import requests
-from io import BytesIO
-from PIL import Image
 import string
+from io import BytesIO
+
+import requests
+from PIL import Image
 
 
-__version__ = "1.1.0"
+__version__ = "1.2.0"
 
 
-def get_book_id(book_url: str):
+def get_book_id(book_url: str) -> str:
     book_id = book_url
     if "generated" in book_url:
         book_id = book_id.split("generated")[1]
@@ -19,7 +20,7 @@ def get_book_id(book_url: str):
     )
 
 
-def get_book_url(book_id: str):
+def get_book_url(book_id: str) -> str:
     return (
         "https://d2f01w1orx96i0.cloudfront.net/resources/products/epubs/generated/"
         + book_id
@@ -27,8 +28,12 @@ def get_book_url(book_id: str):
     )
 
 
-def download_pages(book_id: str, max_pages: int = None):
-    pages = []
+class PageDownloadError(Exception):
+    pass
+
+
+def download_pages(book_id: str, max_pages: int = -1) -> "list[Image]":
+    pages: list[Image] = []
     pages_url = get_book_url(book_id)
     while True:
         response = requests.get(pages_url + str(len(pages)))
@@ -40,12 +45,16 @@ def download_pages(book_id: str, max_pages: int = None):
             raise Exception(
                 'unexpected status code "' + str(response.status_code) + '"'
             )
-        if (max_pages is not None) and (len(pages) == max_pages):
+        if (not max_pages <= -1) and (len(pages) == max_pages):
             break
+    if len(pages) == 0:
+        raise PageDownloadError("No pages could be downloaded for {}.".format(book_id))
     return pages
 
 
-def combine_pages(pages: list, path: str, format: str = "PDF", resolution: int = 100):
+def combine_pages(
+    pages: "list[Image]", path: str, format: str = "PDF", resolution: int = 100
+) -> None:
     page_0 = pages[0]
     pages.pop(0)
     page_0.save(path, format, resolution=resolution, save_all=True, append_images=pages)
