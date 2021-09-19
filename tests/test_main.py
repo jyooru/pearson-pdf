@@ -2,18 +2,12 @@ from itertools import combinations
 
 import pytest
 from dotenv import load_dotenv
-from faker import Faker
 
 from pearson_pdf import PageDownloadError
 from pearson_pdf.__main__ import parse_args, run
 
 
 load_dotenv()
-
-
-@pytest.fixture
-def faker() -> Faker:
-    return Faker()  # type: ignore
 
 
 def test_parse_args() -> None:
