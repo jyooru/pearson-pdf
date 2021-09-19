@@ -1,5 +1,12 @@
 # pearson-pdf
 
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pearson-pdf)](https://pypi.org/project/pearson-pdf/)
+[![PyPI](https://img.shields.io/pypi/v/pearson-pdf)](https://pypi.org/project/pearson-pdf/)
+[![Downloads](https://pepy.tech/badge/pearson-pdf)](https://pepy.tech/project/pearson-pdf)
+[![ci](https://github.com/jyooru/pearson-pdf/actions/workflows/ci.yml/badge.svg)](https://github.com/jyooru/pearson-pdf/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/jyooru/pearson-pdf/branch/main/graph/badge.svg?token=SRK5RPLHN0)](https://codecov.io/gh/jyooru/pearson-pdf)
+[![License](https://img.shields.io/github/license/jyooru/pearson-pdf)](LICENSE)
+
 Tool to download Pearson books as PDFs.
 
 ## Installation
