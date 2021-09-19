@@ -21,11 +21,10 @@ def parse_args(args: "list[str]" = []) -> argparse.Namespace:
 
 
 def run(args: argparse.Namespace) -> Union[str, None]:
-    if args.url or args.id:
-        if args.url:
-            return get_book_url(args.book)
-        elif args.id:
-            return get_book_id(args.book)
+    if args.url:
+        return get_book_url(args.book)
+    elif args.id:
+        return get_book_id(args.book)
     else:
         if args.save_path is None:
             args.save_path = get_book_id(get_book_url(args.book)) + ".pdf"
