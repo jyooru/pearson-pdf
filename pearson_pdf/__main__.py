@@ -4,7 +4,7 @@ from typing import Union
 from . import __version__, combine_pages, download_pages, get_book_id, get_book_url
 
 
-def parse_args(args: list[str] = None) -> argparse.Namespace:
+def parse_args(args: list[str] = []) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         prog="pearson_pdf", description="Download Pearson books as PDFs."
     )
@@ -14,7 +14,7 @@ def parse_args(args: list[str] = None) -> argparse.Namespace:
     group.add_argument("-u", "--url", action="store_true", help="Print Book URL")
     group.add_argument("-i", "--id", action="store_true", help="Print Book ID")
     group.add_argument("save_path", type=str, help="Path to save PDF", nargs="?")
-    if args is None:
+    if len(args) == 0:
         return parser.parse_args()
     else:
         return parser.parse_args(args)
