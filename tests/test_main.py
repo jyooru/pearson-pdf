@@ -41,6 +41,9 @@ def test_run() -> None:
 
 
 def test_main() -> None:
+    with pytest.raises(SystemExit):
+        main()
+
     main(["qwerty", "-u"])
 
     with pytest.raises(PageDownloadError):
