@@ -39,12 +39,8 @@ def download_pages(book_id: str, max_pages: int = -1) -> "list[Image.Image]":
         response = requests.get(pages_url + str(len(pages)))
         if response.status_code == 200:
             pages.append(Image.open(BytesIO(response.content)))
-        elif response.status_code == 403:
-            break
         else:
-            raise Exception(
-                'unexpected status code "' + str(response.status_code) + '"'
-            )
+            break
         if (not max_pages <= -1) and (len(pages) == max_pages):
             break
     if len(pages) == 0:
