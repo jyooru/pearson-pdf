@@ -27,7 +27,9 @@ def test_parse_args() -> None:
     mutually_exclusive_combinations = combinations(mutually_exclusive_args, 2)
     for combination in mutually_exclusive_combinations:
         with pytest.raises(SystemExit):
-            parse_args(list(combination).insert(0, "qwerty"))
+            args = list(combination)
+            args.insert(0, "qwerty")
+            parse_args(args)
 
     with pytest.raises(SystemExit):
         parse_args(["--version"])
