@@ -4,7 +4,7 @@ from typing import Union
 from . import __version__, combine_pages, download_pages, get_book_id, get_book_url
 
 
-def parse_args(args: list = None):
+def parse_args(args: list = None) -> None:
     parser = argparse.ArgumentParser(
         prog="pearson_pdf", description="Download Pearson books as PDFs."
     )
@@ -33,7 +33,7 @@ def run(args: argparse.Namespace) -> Union[str, None]:
         combine_pages(download_pages(args.book), args.save_path)
 
 
-def main():
+def main() -> None:
     result = run(parse_args())
     if result is not None:
         print(result)

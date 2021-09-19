@@ -11,11 +11,11 @@ load_dotenv()
 
 
 @pytest.fixture
-def faker():
-    return Faker()
+def faker() -> Faker:
+    return Faker()  # type: ignore
 
 
-def test_parse_args():
+def test_parse_args() -> None:
     with pytest.raises(SystemExit):
         parse_args()
 
