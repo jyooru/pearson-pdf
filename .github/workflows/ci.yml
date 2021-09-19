@@ -38,6 +38,8 @@ jobs:
         run: poetry run flake8 . --count --max-complexity=10 --max-line-length=88 --show-source --statistics
       - name: Check formatting with isort
         run: poetry run isort . --check --diff
+      - name: Check typing with mypy
+        run: poetry run mypy . --install-types --non-interactive --strict
   test:
     strategy:
       matrix:

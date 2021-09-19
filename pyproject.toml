@@ -31,6 +31,7 @@ black = "^21.9b0"
 pytest-cov = "^2.12.1"
 Faker = "^8.13.2"
 isort = "^5.9.3"
+mypy = "^0.910"
 
 [tool.poetry.scripts]
 pearson_pdf = "pearson_pdf.__main__:main"
@@ -42,3 +43,6 @@ build-backend = "poetry.core.masonry.api"
 [tool.isort]
 profile = "black"
 lines_after_imports = 2
+
+[tool.mypy]
+ignore_missing_imports = true
