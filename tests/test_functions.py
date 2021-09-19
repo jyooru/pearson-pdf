@@ -22,7 +22,7 @@ load_dotenv()
 
 @pytest.fixture
 def faker() -> Faker:
-    return Faker()
+    return Faker()  # type: ignore
 
 
 def test_get_book(faker: Faker) -> None:
