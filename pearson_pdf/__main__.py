@@ -30,8 +30,7 @@ def run(args: argparse.Namespace) -> Union[str, None]:
         if args.save_path is None:
             args.save_path = get_book_id(get_book_url(args.book)) + ".pdf"
         args.book = get_book_id(args.book)
-        combine_pages(download_pages(args.book), args.save_path)
-        return None
+        return combine_pages(download_pages(args.book), args.save_path)
 
 
 def main(args: "list[str]" = []) -> None:
