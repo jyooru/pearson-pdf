@@ -1,4 +1,5 @@
 from itertools import combinations
+from pearson_pdf import PageDownloadError
 
 import pytest
 from dotenv import load_dotenv
@@ -33,3 +34,13 @@ def test_parse_args() -> None:
 
     with pytest.raises(SystemExit):
         parse_args(["--version"])
+
+
+def test_run() -> None:
+    run(parse_args(["qwerty", "-u"]))
+    run(parse_args(["qwerty", "-i"]))
+
+    with pytest.raises(PageDownloadError):
+        run(parse_args(["qwerty", "qwerty.pdf"]))
+    with pytest.raises(PageDownloadError):
+        run(parse_args(["qwerty"]))
