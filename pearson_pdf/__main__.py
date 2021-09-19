@@ -4,7 +4,7 @@ from typing import Union
 from . import __version__, combine_pages, download_pages, get_book_id, get_book_url
 
 
-def parse_args(args: list = None) -> None:
+def parse_args(args: list[str] = None) -> None:
     parser = argparse.ArgumentParser(
         prog="pearson_pdf", description="Download Pearson books as PDFs."
     )
