@@ -41,7 +41,7 @@ jobs:
       - name: Check formatting with isort
         if: ${{ always() }}
         run: poetry run isort . --check --diff
-      - name: Check typing with mypy
+      - name: Check types with mypy
         if: ${{ always() }}
         run: poetry run mypy .
   test:
