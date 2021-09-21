@@ -45,4 +45,7 @@ profile = "black"
 lines_after_imports = 2
 
 [tool.mypy]
+install_types = true
 ignore_missing_imports = true
+non_interactive = true
+strict = true

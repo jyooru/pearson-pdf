@@ -43,7 +43,7 @@ jobs:
         run: poetry run isort . --check --diff
       - name: Check typing with mypy
         if: ${{ always() }}
-        run: poetry run mypy . --install-types --non-interactive --strict
+        run: poetry run mypy .
   test:
     strategy:
       matrix:
