@@ -20,11 +20,6 @@ from pearson_pdf import (
 load_dotenv()
 
 
-@pytest.fixture
-def faker() -> Faker:
-    return Faker()  # type: ignore
-
-
 def test_get_book(faker: Faker) -> None:
     book_id = faker.uuid4()
     assert get_book_id(get_book_url(book_id)) == book_id
