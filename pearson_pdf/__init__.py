@@ -44,7 +44,7 @@ def download_pages(book_id: str, max_pages: int = -1) -> "list[Image.Image]":
         if (not max_pages <= -1) and (len(pages) == max_pages):
             break
     if len(pages) == 0:
-        raise PageDownloadError("No pages could be downloaded for {}.".format(book_id))
+        raise PageDownloadError(f"No pages could be downloaded for {book_id}.")
     return pages
 
 
