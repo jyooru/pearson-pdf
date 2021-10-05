@@ -14,7 +14,7 @@ class PageDownloadError(Exception):
 def download_pages(book_url: str, max_pages: int = -1) -> "list[Image.Image]":
     pages: list[Image.Image] = []
     while True:
-        response = requests.get(book_url + str(len(pages)))
+        response = requests.get(f"{book_url}/pages/page{str(len(pages))}")
         if response.status_code == 200:
             pages.append(Image.open(BytesIO(response.content)))
         else:
