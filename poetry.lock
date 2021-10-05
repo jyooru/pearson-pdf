@@ -112,7 +112,7 @@ python-versions = ">=3.6, <3.7"
 
 [[package]]
 name = "faker"
-version = "8.14.1"
+version = "8.16.0"
 description = "Faker is a Python package that generates fake data for you."
 category = "dev"
 optional = false
@@ -472,7 +472,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6.2"
-content-hash = "be5b46140d4879dba1488b3cfb3b822fd0d817d5453c5e13eeb389ed19d95f86"
+content-hash = "a09790713b72c103a8ad0ecddde8faa4e38a741386e005418663ca13fb82e369"
 
 [metadata.files]
 atomicwrites = [
@@ -545,8 +545,8 @@ dataclasses = [
     {file = "dataclasses-0.8.tar.gz", hash = "sha256:8479067f342acf957dc82ec415d355ab5edb7e7646b90dc6e2fd1d96ad084c97"},
 ]
 faker = [
-    {file = "Faker-8.14.1-py3-none-any.whl", hash = "sha256:30e10d959191b30fd89f7a180940b930bafcaf371c41cfb740d9cefacfe3555f"},
-    {file = "Faker-8.14.1.tar.gz", hash = "sha256:17225e20fed6b958108ad278974b5eb63a797496e43d5c337366fa128473d94f"},
+    {file = "Faker-8.16.0-py3-none-any.whl", hash = "sha256:bb10913b9d3ac2aa37180f816c82040e81f9e0c32cb08445533f293cec8930bf"},
+    {file = "Faker-8.16.0.tar.gz", hash = "sha256:d70b375d0af0e4c3abd594003691a1055a96281a414884e623d27bccc7d781da"},
 ]
 flake8 = [
     {file = "flake8-3.9.2-py2.py3-none-any.whl", hash = "sha256:bf8fd333346d844f616e8d47905ef3a3384edae6b4e9beb0c5101e25e3110907"},
