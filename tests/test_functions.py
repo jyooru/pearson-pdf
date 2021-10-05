@@ -7,11 +7,7 @@ import requests
 from dotenv import load_dotenv
 from PIL import Image
 
-from pearson_pdf import (
-    PageDownloadError,
-    combine_pages,
-    download_pages,
-)
+from pearson_pdf import PageDownloadError, combine_pages, download_pages
 
 
 load_dotenv()
