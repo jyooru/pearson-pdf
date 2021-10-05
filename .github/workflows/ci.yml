@@ -69,26 +69,9 @@ jobs:
       - name: Install dependencies
         run: poetry install --no-interaction --no-root
       - name: Test with pytest
-        if: runner.os != 'Windows'
         env:
-          book_id: ${{ secrets.BOOK_ID }}
-        run: |
-          if [ -z "$BOOK_ID" ]; then
-            poetry run pytest --cov=./ --cov-report=xml
-          else
-            book_id="$BOOK_ID" poetry run pytest --cov=./ --cov-report=xml
-          fi
-      - name: Test with pytest (Windows)
-        if: runner.os == 'Windows'
-        env:
-          book_id: ${{ secrets.BOOK_ID }}
-        run: |
-          if ("$Env:BOOK_ID") {
-            $Env:book_id="$Env:BOOK_ID"
-            poetry run pytest --cov=./ --cov-report=xml
-          } else {
-            poetry run pytest --cov=./ --cov-report=xml
-          }
+          TESTS_BOOK_URL: ${{ secrets.TESTS_BOOK_URL }}
+        run: poetry run pytest --cov=./ --cov-report=xml
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
         if: ${{ always() }}
