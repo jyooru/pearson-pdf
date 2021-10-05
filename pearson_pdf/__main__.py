@@ -17,8 +17,8 @@ def parse_args(args: "list[str]" = []) -> argparse.Namespace:
 
 
 def main(args: "list[str]" = []) -> None:
-    args = parse_args(args)
-    combine_pages(download_pages(args.book), args.save_path)
+    parsed_args = parse_args(args)
+    combine_pages(download_pages(parsed_args.book), parsed_args.save_path)
 
 
 if __name__ == "__main__":
