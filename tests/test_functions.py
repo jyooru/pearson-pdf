@@ -12,17 +12,10 @@ from pearson_pdf import (
     PageDownloadError,
     combine_pages,
     download_pages,
-    get_book_id,
-    get_book_url,
 )
 
 
 load_dotenv()
-
-
-def test_get_book(faker: Faker) -> None:
-    book_id = faker.uuid4()
-    assert get_book_id(get_book_url(book_id)) == book_id
 
 
 def test_combine_pages() -> None:
