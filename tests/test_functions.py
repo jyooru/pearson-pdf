@@ -43,4 +43,4 @@ def test_download_pages() -> None:
         assert page.width != 0
 
     with pytest.raises(PageDownloadError):
-        download_pages("qwerty")
+        download_pages(os.environ["TESTS_BOOK_URL"] + "/foo")
