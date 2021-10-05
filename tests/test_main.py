@@ -14,16 +14,18 @@ def test_parse_args() -> None:
     with pytest.raises(SystemExit):
         parse_args()
     with pytest.raises(SystemExit):
-        parse_args(["foo"])
-    parse_args(["foo", "foo.pdf"])
+        parse_args(["https://foo"])
+    parse_args(["https://foo", "foo.pdf"])
     with pytest.raises(SystemExit):
         parse_args(["--version"])
 
 
-@pytest.mark.skipif("book_id" not in os.environ, reason="book_id is not set")
+@pytest.mark.skipif(
+    "TESTS_BOOK_URL" not in os.environ, reason="TESTS_BOOK_URL is not set"
+)
 def test_main() -> None:
     with pytest.raises(SystemExit):
         main()
     with pytest.raises(PageDownloadError):
-        main(["foo", "foo.pdf"])
-    main([os.environ["book_id"], "foo.pdf"])
+        main([os.environ["TESTS_BOOK_URL"] + "/foo", "foo.pdf"])
+    main([os.environ["TESTS_BOOK_URL"], "foo.pdf"])
