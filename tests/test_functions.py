@@ -5,7 +5,6 @@ from tempfile import TemporaryDirectory
 import pytest
 import requests
 from dotenv import load_dotenv
-from faker import Faker
 from PIL import Image
 
 from pearson_pdf import (
