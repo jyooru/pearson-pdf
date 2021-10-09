@@ -22,14 +22,30 @@ jobs:
           python-version: 3.x
       - name: Set up Poetry
         uses: Gr1N/setup-poetry@v7
-      - name: Cache dependencies
+      - name: Cache dependencies (Linux)
         uses: actions/cache@v2
+        if: startsWith(runner.os, 'Linux')
         with:
-          path: ~/.cache/pypoetry/virtualenvs
-          key: ${{ runner.os }}-poetry-${{ hashFiles('poetry.lock') }}
+          path: ~/.cache/pypoetry
+          key: ${{ runner.os }}-poetry-${{ matrix.python-version }}-${{ hashFiles('poetry.lock') }}
           restore-keys: |
-            ${{ runner.os }}-poetry-
-            ${{ runner.os }}-
+            ${{ runner.os }}-poetry-${{ matrix.python-version }}-
+      - name: Cache dependencies (macOS)
+        uses: actions/cache@v2
+        if: startsWith(runner.os, 'macOS')
+        with:
+          path: ~/Library/Caches/pypoetry
+          key: ${{ runner.os }}-poetry-${{ matrix.python-version }}-${{ hashFiles('poetry.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-poetry-${{ matrix.python-version }}-
+      - name: Cache dependencies (Windows)
+        uses: actions/cache@v2
+        if: startsWith(runner.os, 'Windows')
+        with:
+          path: "C:\\Users\\runneradmin\\AppData\\Local\\pypoetry\\Cache"
+          key: ${{ runner.os }}-poetry-${{ matrix.python-version }}-${{ hashFiles('poetry.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-poetry-${{ matrix.python-version }}-
       - name: Install dependencies
         run: poetry install --no-interaction --no-root
       - name: Check formatting with black
@@ -58,14 +74,30 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Set up Poetry
         uses: Gr1N/setup-poetry@v7
-      - name: Cache dependencies
+      - name: Cache dependencies (Linux)
         uses: actions/cache@v2
+        if: startsWith(runner.os, 'Linux')
         with:
-          path: ~/.cache/pypoetry/virtualenvs
-          key: ${{ runner.os }}-poetry-${{ hashFiles('poetry.lock') }}
+          path: ~/.cache/pypoetry
+          key: ${{ runner.os }}-poetry-${{ matrix.python-version }}-${{ hashFiles('poetry.lock') }}
           restore-keys: |
-            ${{ runner.os }}-poetry-
-            ${{ runner.os }}-
+            ${{ runner.os }}-poetry-${{ matrix.python-version }}-
+      - name: Cache dependencies (macOS)
+        uses: actions/cache@v2
+        if: startsWith(runner.os, 'macOS')
+        with:
+          path: ~/Library/Caches/pypoetry
+          key: ${{ runner.os }}-poetry-${{ matrix.python-version }}-${{ hashFiles('poetry.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-poetry-${{ matrix.python-version }}-
+      - name: Cache dependencies (Windows)
+        uses: actions/cache@v2
+        if: startsWith(runner.os, 'Windows') && (matrix.python-version != 3.6)
+        with:
+          path: "C:\\Users\\runneradmin\\AppData\\Local\\pypoetry\\Cache"
+          key: ${{ runner.os }}-poetry-${{ matrix.python-version }}-${{ hashFiles('poetry.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-poetry-${{ matrix.python-version }}-
       - name: Install dependencies
         run: poetry install --no-interaction --no-root
       - name: Test with pytest
@@ -98,11 +130,10 @@ jobs:
       - name: Cache dependencies
         uses: actions/cache@v2
         with:
-          path: ~/.cache/pypoetry/virtualenvs
-          key: ${{ runner.os }}-poetry-${{ hashFiles('poetry.lock') }}
+          path: ~/.cache/pypoetry
+          key: ${{ runner.os }}-poetry-${{ matrix.python-version }}-${{ hashFiles('poetry.lock') }}
           restore-keys: |
-            ${{ runner.os }}-poetry-
-            ${{ runner.os }}-
+            ${{ runner.os }}-poetry-${{ matrix.python-version }}-
       - name: Install dependencies
         run: poetry install --no-interaction --no-root
       - name: Build package
