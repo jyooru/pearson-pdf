@@ -22,27 +22,10 @@ jobs:
           python-version: 3.x
       - name: Set up Poetry
         uses: Gr1N/setup-poetry@v7
-      - name: Cache dependencies (Linux)
+      - name: Cache dependencies
         uses: actions/cache@v2
-        if: startsWith(runner.os, 'Linux')
         with:
           path: ~/.cache/pypoetry
-          key: ${{ runner.os }}-poetry-${{ matrix.python-version }}-${{ hashFiles('poetry.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-poetry-${{ matrix.python-version }}-
-      - name: Cache dependencies (macOS)
-        uses: actions/cache@v2
-        if: startsWith(runner.os, 'macOS')
-        with:
-          path: ~/Library/Caches/pypoetry
-          key: ${{ runner.os }}-poetry-${{ matrix.python-version }}-${{ hashFiles('poetry.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-poetry-${{ matrix.python-version }}-
-      - name: Cache dependencies (Windows)
-        uses: actions/cache@v2
-        if: startsWith(runner.os, 'Windows')
-        with:
-          path: "C:\\Users\\runneradmin\\AppData\\Local\\pypoetry\\Cache"
           key: ${{ runner.os }}-poetry-${{ matrix.python-version }}-${{ hashFiles('poetry.lock') }}
           restore-keys: |
             ${{ runner.os }}-poetry-${{ matrix.python-version }}-
