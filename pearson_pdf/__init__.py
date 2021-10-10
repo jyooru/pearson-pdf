@@ -2,9 +2,19 @@ from io import BytesIO
 
 import requests
 from PIL import Image
+from selenium.webdriver import Firefox
+from selenium.webdriver.firefox.options import Options
 
 
 __version__ = "1.3.0"
+
+
+class Browser:
+    def __init__(self, headless=False) -> None:
+        self.options = Options()
+        if headless:
+            self.options.add_argument("--headless")
+        self.browser = Firefox(options=self.options)
 
 
 class PageDownloadError(Exception):
