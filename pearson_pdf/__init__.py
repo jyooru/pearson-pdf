@@ -5,6 +5,7 @@ import requests
 from PIL import Image
 from selenium.webdriver import Firefox
 from selenium.webdriver.firefox.options import Options
+from selenium.common.exceptions import NoSuchWindowException
 
 
 __version__ = "1.3.0"
@@ -21,6 +22,10 @@ class Browser:
             "Please return to the console.";"""
         )
 
+    def handle_NoSuchWindowException(self):
+        windows = self.browser.window_handles
+        self.browser.switch_to.window(windows[0])
+
     def is_reader(self) -> bool:
         return self.browser.execute_script(
             """
@@ -34,8 +39,12 @@ class Browser:
         )
 
     def wait_for_reader(self) -> None:
-        while not self.is_reader():
-            sleep(0.5)
+        try:
+            while not self.is_reader():
+                sleep(0.5)
+        except NoSuchWindowException:
+            self.handle_NoSuchWindowException()
+            return self.wait_for_reader()
 
 
 class PageDownloadError(Exception):

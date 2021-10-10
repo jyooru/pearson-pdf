@@ -28,7 +28,7 @@ def main(args: "list[str]" = []) -> None:
         browser = Browser()
         console.log("Successfully launched browser.")
     with console.status(
-        "[bold]Using the browser, login to Pearson and open the book you would like to download. Waiting for reader to be detected..."
+        "[bold]Waiting for reader to be detected...[/bold] \n  Using the browser, login to Pearson and open the book you would like to download. You may need to close all other tabs in the browser for the reader to be detected."
     ):
         browser.wait_for_reader()
         console.log("Successfully detected reader web app.")
