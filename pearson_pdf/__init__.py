@@ -1,4 +1,5 @@
 from io import BytesIO
+from time import sleep
 
 import requests
 from PIL import Image
@@ -15,6 +16,26 @@ class Browser:
         if headless:
             self.options.add_argument("--headless")
         self.browser = Firefox(options=self.options)
+        self.browser.execute_script(
+            """document.getElementsByTagName("body")[0].innerHTML =
+            "Please return to the console.";"""
+        )
+
+    def is_reader(self) -> bool:
+        return self.browser.execute_script(
+            """
+            try {
+              foxitAssetURL;
+              return true;
+            } catch (RefernceError) {
+              return false;
+            }
+            """
+        )
+
+    def wait_for_reader(self) -> None:
+        while not self.is_reader():
+            sleep(0.5)
 
 
 class PageDownloadError(Exception):

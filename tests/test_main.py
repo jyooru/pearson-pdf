@@ -3,7 +3,7 @@ import os
 import pytest
 from dotenv import load_dotenv
 
-from pearson_pdf import PageDownloadError, Browser
+from pearson_pdf import Browser, PageDownloadError
 from pearson_pdf.__main__ import main, parse_args
 
 
@@ -32,4 +32,5 @@ def test_main() -> None:
 
 
 def test_browser() -> None:
-    Browser()
+    browser = Browser()
+    browser.wait_for_reader()

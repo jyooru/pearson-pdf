@@ -1,6 +1,11 @@
 import argparse
 
-from . import __version__, combine_pages, download_pages
+from rich.console import Console
+
+from . import Browser, __version__, combine_pages, download_pages
+
+
+console = Console()
 
 
 def parse_args(args: "list[str]" = []) -> argparse.Namespace:
@@ -17,8 +22,17 @@ def parse_args(args: "list[str]" = []) -> argparse.Namespace:
 
 
 def main(args: "list[str]" = []) -> None:
-    parsed_args = parse_args(args)
-    combine_pages(download_pages(parsed_args.book), parsed_args.save_path)
+    # parsed_args = parse_args(args)
+    # combine_pages(download_pages(parsed_args.book), parsed_args.save_path)
+    with console.status("[bold]Launching browser..."):
+        browser = Browser()
+        console.log("Successfully launched browser.")
+    with console.status(
+        "[bold]Using the browser, login to Pearson and open the book you would like to download. Waiting for reader to be detected..."
+    ):
+        browser.wait_for_reader()
+        console.log("Successfully detected reader web app.")
+    browser.browser.close()
 
 
 if __name__ == "__main__":
