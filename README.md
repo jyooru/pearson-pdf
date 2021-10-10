@@ -30,13 +30,13 @@ To download a PDF, you'll need to get the book's ID:
 4. Copy that URL.
 5. Download your URL as a PDF to `output.pdf` using pearson-pdf:
    ```bash
-   pearson_pdf https://example.com/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/foxit-assets output.pdf
+   pearson-pdf https://example.com/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/foxit-assets output.pdf
    ```
 
 More information on usage is in the help page:
 
 ```bash
-pearson_pdf -h
+pearson-pdf -h
 ```
 
 ## License

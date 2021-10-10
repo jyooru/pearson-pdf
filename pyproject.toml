@@ -35,7 +35,7 @@ mypy = "^0.910"
 types-requests = "^2.25.9"
 
 [tool.poetry.scripts]
-pearson_pdf = "pearson_pdf.__main__:main"
+pearson-pdf = "pearson_pdf.__main__:main"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
