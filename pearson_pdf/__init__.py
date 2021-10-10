@@ -1,5 +1,6 @@
 from io import BytesIO
 from time import sleep
+from typing import Any
 
 import requests
 from PIL import Image
@@ -45,6 +46,12 @@ class Browser:
         except NoSuchWindowException:
             self.handle_NoSuchWindowException()
             return self.wait_for_reader()
+
+    def get_variable(self, variable: str) -> Any:
+        return self.browser.execute_script(f"return {variable}")
+
+    def get_foxitAssetURL(self) -> Any:
+        return self.get_variable("foxitAssetURL")
 
 
 class PageDownloadError(Exception):
