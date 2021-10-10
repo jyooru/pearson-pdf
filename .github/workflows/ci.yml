@@ -47,7 +47,7 @@ jobs:
     strategy:
       matrix:
         os: [macos-latest, ubuntu-latest, windows-latest]
-        python-version: ["3.9", "3.8", "3.7", "3.6"]
+        python-version: ["3.9", "3.8", "3.7"]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
@@ -75,7 +75,7 @@ jobs:
             ${{ runner.os }}-poetry-${{ matrix.python-version }}-
       - name: Cache dependencies (Windows)
         uses: actions/cache@v2
-        if: startsWith(runner.os, 'Windows') && (matrix.python-version != 3.6)
+        if: startsWith(runner.os, 'Windows')
         with:
           path: "C:\\Users\\runneradmin\\AppData\\Local\\pypoetry\\Cache"
           key: ${{ runner.os }}-poetry-${{ matrix.python-version }}-${{ hashFiles('poetry.lock') }}
