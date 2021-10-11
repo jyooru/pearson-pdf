@@ -1,12 +1,12 @@
 from io import BytesIO
 from time import sleep
-from typing import Any
+from typing import Any, Optional
 
 import requests
 from PIL import Image
+from selenium.common.exceptions import NoSuchWindowException
 from selenium.webdriver import Firefox
 from selenium.webdriver.firefox.options import Options
-from selenium.common.exceptions import NoSuchWindowException
 
 
 __version__ = "1.3.0"
@@ -47,11 +47,30 @@ class Browser:
             self.handle_NoSuchWindowException()
             return self.wait_for_reader()
 
-    def get_variable(self, variable: str) -> Any:
-        return self.browser.execute_script(f"return {variable}")
+    def get_variable(
+        self,
+        variable: str,
+        attempts: Optional[int] = None,
+        delay: Optional[float] = None,
+    ) -> Any:
+        attempts = 1 if attempts is None else attempts
+        delay = 0.25 if delay is None else delay
+        for _ in range(attempts):
+            result = self.browser.execute_script(f"return {variable}")
+            if result is not None:
+                return result
+            sleep(delay)
+        raise ValueError(f"Could not find variable {variable}")
 
-    def get_foxitAssetURL(self) -> Any:
-        return self.get_variable("foxitAssetURL")
+    def get_localStorage(
+        self, key: str, attempts: Optional[int] = None, delay: Optional[float] = None
+    ) -> Any:
+        return self.get_variable(f"window.localStorage['{key}']", attempts, delay)
+
+    def get_sessionStorage(
+        self, key: str, attempts: Optional[int] = None, delay: Optional[float] = None
+    ) -> Any:
+        return self.get_variable(f"window.sessionStorage['{key}']", attempts, delay)
 
 
 class PageDownloadError(Exception):

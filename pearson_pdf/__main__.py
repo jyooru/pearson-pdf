@@ -1,9 +1,11 @@
 import argparse
+import json
+from types import coroutine
 
 from rich.console import Console
-
+from rich.syntax import Syntax
+import time
 from . import Browser, __version__, combine_pages, download_pages
-
 
 console = Console()
 
@@ -32,6 +34,19 @@ def main(args: "list[str]" = []) -> None:
     ):
         browser.wait_for_reader()
         console.log("Successfully detected reader web app.")
+    with console.status("[bold]Gathering information..."):
+        attempts = 40  # * 0.25 = 10 seconds
+        title = browser.get_localStorage("title", attempts)
+        page_mapping = json.loads(browser.get_localStorage("_pageMapping", attempts))
+        course_id = browser.get_localStorage("courseId", attempts)
+        book_id = browser.get_localStorage("bookId", attempts)
+        manifest_data = json.loads(
+            browser.get_sessionStorage(f"{course_id}_manifestData", attempts)
+        )
+        page_count = manifest_data["PageCount"]
+        page_info = manifest_data["PagesInfo"]
+        asset_url = browser.get_variable("foxitAssetURL", attempts)
+
     browser.browser.close()
 
 
