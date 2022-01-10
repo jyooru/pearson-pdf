@@ -32,7 +32,7 @@ pytest-cov = "^3.0.0"
 Faker = "^9.9.0"
 isort = "^5.9.3"
 mypy = "^0.910"
-types-requests = "^2.25.9"
+types-requests = "^2.27.5"
 
 [tool.poetry.scripts]
 pearson_pdf = "pearson_pdf.__main__:main"
