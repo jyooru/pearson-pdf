@@ -9,7 +9,7 @@ from selenium.webdriver import Firefox
 from selenium.webdriver.firefox.options import Options
 
 
-__version__ = "1.3.0"
+__version__ = "1.4.0"
 
 
 class Browser:
