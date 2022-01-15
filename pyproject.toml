@@ -31,7 +31,7 @@ black = "^21.12b0"
 pytest-cov = "^3.0.0"
 Faker = "^9.9.0"
 isort = "^5.9.3"
-mypy = "^0.910"
+mypy = "^0.931"
 types-requests = "^2.25.9"
 
 [tool.poetry.scripts]
