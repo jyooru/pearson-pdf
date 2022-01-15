@@ -5,24 +5,12 @@ from tempfile import TemporaryDirectory
 import pytest
 import requests
 from dotenv import load_dotenv
-from faker import Faker
 from PIL import Image
 
-from pearson_pdf import (
-    PageDownloadError,
-    combine_pages,
-    download_pages,
-    get_book_id,
-    get_book_url,
-)
+from pearson_pdf import PageDownloadError, combine_pages, download_pages
 
 
 load_dotenv()
-
-
-def test_get_book(faker: Faker) -> None:
-    book_id = faker.uuid4()
-    assert get_book_id(get_book_url(book_id)) == book_id
 
 
 def test_combine_pages() -> None:
@@ -38,14 +26,16 @@ def test_combine_pages() -> None:
         assert os.path.exists(path)
 
 
-@pytest.mark.skipif("book_id" not in os.environ, reason="book_id is not set")
+@pytest.mark.skipif(
+    "TESTS_BOOK_URL" not in os.environ, reason="TESTS_BOOK_URL is not set"
+)
 def test_download_pages() -> None:
     max_pages = 10
-    pages = download_pages(os.environ["book_id"], max_pages)
+    pages = download_pages(os.environ["TESTS_BOOK_URL"], max_pages)
     assert len(pages) == max_pages
     for page in pages:
         assert page.height != 0
         assert page.width != 0
 
     with pytest.raises(PageDownloadError):
-        download_pages("qwerty")
+        download_pages(os.environ["TESTS_BOOK_URL"] + "/foo")

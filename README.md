@@ -27,22 +27,16 @@ To download a PDF, you'll need to get the book's ID:
    ```js
    window.foxitAssetURL;
    ```
-4. Copy that URL. pearson-pdf will parse the ID from that URL.
-
-Now you can download your PDF:
-
-```bash
-# with an id
-pearson_pdf xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-
-# with a url
-pearson_pdf https://example.com/generated/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/foxit-assets
-```
+4. Copy that URL.
+5. Download your URL as a PDF to `output.pdf` using pearson-pdf:
+   ```bash
+   pearson-pdf https://example.com/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/foxit-assets output.pdf
+   ```
 
 More information on usage is in the help page:
 
 ```bash
-pearson_pdf -h
+pearson-pdf -h
 ```
 
 ## License

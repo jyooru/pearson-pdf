@@ -19,7 +19,7 @@ classifiers = [
 exclude = ["tests"]
 
 [tool.poetry.dependencies]
-python = "^3.6.2"
+python = "^3.7"
 requests = "^2.26.0"
 Pillow = "^8.3.2"
 
@@ -35,7 +35,7 @@ mypy = "^0.931"
 types-requests = "^2.27.7"
 
 [tool.poetry.scripts]
-pearson_pdf = "pearson_pdf.__main__:main"
+pearson-pdf = "pearson_pdf.__main__:main"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
