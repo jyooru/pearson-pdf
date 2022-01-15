@@ -8,7 +8,10 @@
     flake-utils.lib.eachDefaultSystem (system:
       let pkgs = import nixpkgs { inherit system; }; in
       with pkgs; rec {
-        devShell = packages.env.env;
+        devShell = packages.env.env.overrideAttrs (_: {
+          buildInputs = [ firefox geckodriver ];
+        });
+
         packages.env = poetry2nix.mkPoetryEnv { projectDir = ./.; };
       }
     );
