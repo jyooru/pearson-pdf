@@ -35,7 +35,7 @@ jobs:
         run: poetry run black . --check
       - name: Lint with flake8
         if: ${{ always() }}
-        run: poetry run flake8 . --count --show-source --statistics
+        run: poetry run flake8 . --count --exclude .venv --show-source --statistics
       - name: Check formatting with isort
         if: ${{ always() }}
         run: poetry run isort . --check --diff
