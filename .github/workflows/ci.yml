@@ -2,6 +2,8 @@ name: ci
 
 on:
   push:
+    branches:
+      - main
   pull_request:
   release:
     types: [published]
@@ -16,22 +18,24 @@ jobs:
         with:
           python-version: 3.x
       - name: Set up Poetry
-        uses: Gr1N/setup-poetry@v7
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
       - name: Cache dependencies
         uses: actions/cache@v2
         with:
-          path: ~/.cache/pypoetry
-          key: ${{ runner.os }}-poetry-${{ matrix.python-version }}-${{ hashFiles('poetry.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-poetry-${{ matrix.python-version }}-
+          path: .venv
+          key: venv-${{ matrix.os }}-${{ matrix.python-version }}-${{ hashFiles('**/poetry.lock') }}
       - name: Install dependencies
+        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
         run: poetry install --no-interaction --no-root
       - name: Check formatting with black
         if: ${{ always() }}
         run: poetry run black . --check
       - name: Lint with flake8
         if: ${{ always() }}
-        run: poetry run flake8 . --count --show-source --statistics
+        run: poetry run flake8 . --count --exclude .venv --show-source --statistics
       - name: Check formatting with isort
         if: ${{ always() }}
         run: poetry run isort . --check --diff
@@ -40,9 +44,10 @@ jobs:
         run: poetry run mypy .
   test:
     strategy:
+      fail-fast: false
       matrix:
         os: [macos-latest, ubuntu-latest, windows-latest]
-        python-version: ["3.10", "3.9", "3.8", "3.7"]
+        python-version: ["3.7", "3.8", "3.9", "3.10"]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
@@ -51,32 +56,17 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Set up Poetry
-        uses: Gr1N/setup-poetry@v7
-      - name: Cache dependencies (Linux)
-        uses: actions/cache@v2
-        if: startsWith(runner.os, 'Linux')
+        uses: snok/install-poetry@v1
         with:
-          path: ~/.cache/pypoetry
-          key: ${{ runner.os }}-poetry-${{ matrix.python-version }}-${{ hashFiles('poetry.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-poetry-${{ matrix.python-version }}-
-      - name: Cache dependencies (macOS)
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+      - name: Cache dependencies
         uses: actions/cache@v2
-        if: startsWith(runner.os, 'macOS')
         with:
-          path: ~/Library/Caches/pypoetry
-          key: ${{ runner.os }}-poetry-${{ matrix.python-version }}-${{ hashFiles('poetry.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-poetry-${{ matrix.python-version }}-
-      - name: Cache dependencies (Windows)
-        uses: actions/cache@v2
-        if: startsWith(runner.os, 'Windows')
-        with:
-          path: "C:\\Users\\runneradmin\\AppData\\Local\\pypoetry\\Cache"
-          key: ${{ runner.os }}-poetry-${{ matrix.python-version }}-${{ hashFiles('poetry.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-poetry-${{ matrix.python-version }}-
+          path: .venv
+          key: venv-${{ matrix.os }}-${{ matrix.python-version }}-${{ hashFiles('**/poetry.lock') }}
       - name: Install dependencies
+        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
         run: poetry install --no-interaction --no-root
       - name: Test with pytest
         env:
