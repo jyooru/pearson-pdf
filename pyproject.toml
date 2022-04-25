@@ -24,7 +24,7 @@ requests = "^2.26.0"
 Pillow = ">=8.3.2,<10.0.0"
 
 [tool.poetry.dev-dependencies]
-pytest = "^7.1.1"
+pytest = "^7.1.2"
 python-dotenv = "^0.20.0"
 flake8 = "^4.0.1"
 black = "^22.3"
