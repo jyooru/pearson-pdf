@@ -98,7 +98,7 @@ toml = ["tomli"]
 
 [[package]]
 name = "faker"
-version = "13.4.0"
+version = "13.6.0"
 description = "Faker is a Python package that generates fake data for you."
 category = "dev"
 optional = false
@@ -452,7 +452,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "6278694f295453ec53644548ed5b467eae752d5b0eabae752e0eb44521f615a3"
+content-hash = "589f9d92d6e5e454f6c640fcae551fe2e61ea0cac9804845fcd8ed35482535e4"
 
 [metadata.files]
 atomicwrites = [
@@ -548,8 +548,8 @@ coverage = [
     {file = "coverage-6.3.2.tar.gz", hash = "sha256:03e2a7826086b91ef345ff18742ee9fc47a6839ccd517061ef8fa1976e652ce9"},
 ]
 faker = [
-    {file = "Faker-13.4.0-py3-none-any.whl", hash = "sha256:2d4139254c1cc69f2b5203f4a9aaab33a9e65f7994059856300ef6e21ac93f39"},
-    {file = "Faker-13.4.0.tar.gz", hash = "sha256:2a9716f2c409224121144f0d2fdc7105e978e2e266deb4d8216061d9668951fc"},
+    {file = "Faker-13.6.0-py3-none-any.whl", hash = "sha256:7ab2f741ef1c006ed7274a6ed75695ca8b610f78861566b599ce83c4953bf687"},
+    {file = "Faker-13.6.0.tar.gz", hash = "sha256:0d5425894e098410b64aaade38a81074fa30163076251118523adf5bb44f8346"},
 ]
 flake8 = [
     {file = "flake8-4.0.1-py2.py3-none-any.whl", hash = "sha256:479b1304f72536a55948cb40a32dce8bb0ffe3501e26eaf292c7e60eb5e0428d"},
