@@ -1,15 +1,32 @@
 {
   inputs = {
-    flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
   };
 
-  outputs = { self, flake-utils, nixpkgs }:
-    flake-utils.lib.eachDefaultSystem (system:
-      let pkgs = import nixpkgs { inherit system; }; in
-      with pkgs; rec {
-        devShell = packages.env.env;
-        packages.env = poetry2nix.mkPoetryEnv { projectDir = ./.; };
-      }
-    );
+  outputs = { self, nixpkgs, utils } @ inputs:
+    utils.lib.mkFlake {
+      inherit self inputs;
+
+      outputsBuilder = channels:
+        let pkgs = channels.nixpkgs; in
+        with pkgs;
+        rec {
+          devShells = rec {
+            default = pearson-pdf;
+            pearson-pdf = (poetry2nix.mkPoetryEnv { projectDir = ./.; }).env;
+          };
+
+          packages = (self.overlays.default pkgs pkgs) // {
+            default = packages.pearson-pdf;
+          };
+        };
+
+      overlays = rec {
+        default = pearson-pdf;
+        pearson-pdf = final: prev: {
+          pearson-pdf = final.poetry2nix.mkPoetryApplication { projectDir = ./.; };
+        };
+      };
+    };
 }
