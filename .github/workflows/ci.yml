@@ -23,7 +23,7 @@ jobs:
           virtualenvs-create: true
           virtualenvs-in-project: true
       - name: Cache dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: .venv
           key: venv-${{ matrix.os }}-${{ matrix.python-version }}-${{ hashFiles('**/poetry.lock') }}
@@ -61,7 +61,7 @@ jobs:
           virtualenvs-create: true
           virtualenvs-in-project: true
       - name: Cache dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: .venv
           key: venv-${{ matrix.os }}-${{ matrix.python-version }}-${{ hashFiles('**/poetry.lock') }}
@@ -96,7 +96,7 @@ jobs:
       - name: Set up Poetry
         uses: Gr1N/setup-poetry@v7
       - name: Cache dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.cache/pypoetry
           key: ${{ runner.os }}-poetry-${{ matrix.python-version }}-${{ hashFiles('poetry.lock') }}
