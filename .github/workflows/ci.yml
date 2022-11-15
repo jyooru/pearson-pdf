@@ -43,6 +43,9 @@ jobs:
         if: ${{ always() }}
         run: poetry run mypy .
   test:
+    defaults:
+      run:
+        shell: bash
     strategy:
       fail-fast: false
       matrix:
