@@ -27,6 +27,10 @@ To download a PDF, you'll need to get the book's ID:
    ```js
    window.foxitAssetURL;
    ```
+   If this command returns `undefined`, this tool is not able to download your
+   book.
+   [See #175](https://github.com/jyooru/pearson-pdf/issues/175#issuecomment-1253153733)
+   for more information.
 4. Copy that URL.
 5. Download your URL as a PDF to `output.pdf` using pearson-pdf:
    ```bash
